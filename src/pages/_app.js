@@ -1,3 +1,6 @@
+import { Provider } from 'react-redux';
+import { store } from '../state/store';
+
 import '../../styles/globals.css';
 import '../../public/assets/plugins/bootstrap/css/bootstrap.min.css';
 import '../../public/assets/plugins/datatables.net-bs4/css/dataTables.bootstrap4.css';
@@ -19,8 +22,12 @@ import App from './app';
 const isLoggedIn = false;
 
 function MyApp({ Component, pageProps }) {
-  const base = isLoggedIn ? <App Component={Component} pageprops={pageProps} /> : <Login />
-  return base
+  const baseApp = isLoggedIn ? <App Component={Component} pageprops={pageProps} /> : <Login />
+  return (
+    <Provider store={store}>
+      {baseApp}
+    </Provider>
+  )
 }
 
 export default MyApp

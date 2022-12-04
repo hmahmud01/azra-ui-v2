@@ -5,6 +5,9 @@ import TopBar from '../components/Header/TopBar';
 import SideBar from '../components/Header/SideBar';
 import Scripts from '../components/Footer/Scripts';
 
+import { Provider } from 'react-redux';
+import { store } from '../state/store';
+
 function App ({ Component, pageProps }) {
 
     useEffect(() => {
