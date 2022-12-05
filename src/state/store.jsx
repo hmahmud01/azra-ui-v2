@@ -1,11 +1,15 @@
-import { legacy_createStore as createStore, applyMiddleware } from "redux";
+import { legacy_createStore as createStore, applyMiddleware, compose } from "redux";
 
 import thunk from "redux-thunk";
 
 import reducers from "../reducers";
 
+let comoseEnhancers = compose;
+if (typeof window !== 'undefined') {
+    comoseEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+  }
 export const store = createStore(
     reducers,
     {},
-    applyMiddleware(thunk)
+    comoseEnhancers(applyMiddleware(thunk)),
 )

@@ -1,7 +1,14 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { useRouter } from 'next/router';
 
+import { authLogin, postLogin } from '../state/authActions';
 
 function Login () {
+    const router = useRouter();
+    const loginData = useSelector(state => state?.isLoggedin);
+    const dispatch = useDispatch();
+
     const [username, setUsername] = useState('');
     const [pass, setPass] = useState('');
 
@@ -13,14 +20,17 @@ function Login () {
         setPass(event.target.value);
     }
 
-    const submitLogin = () => {
-        var data = {
-            'username': username,
-            'password': pass
-        }
+    var data = {
+        'username': username,
+        'password': pass
+    }
+
+    const submitLogin = (event) => {
+        event.preventDefault();
         // REDUX FUNCFION HERE 
         // OTHER FETCH STATE DATA HERE 
         console.log(data);
+        dispatch(authLogin(data));
     }
 
     return (
@@ -45,6 +55,7 @@ function Login () {
                             <div className="col-xs-12">
                                 {/* <button className="btn btn-info btn-lg btn-block text-uppercase waves-effect waves-light" type="button" id="btn_login">Log In</button> */}
                                 <input type="submit" value="Submit" className="btn btn-info btn-lg btn-block text-uppercase waves-effect waves-light" id="btn_login"/>
+                                {/* <button className="btn btn-info btn-lg btn-block text-uppercase waves-effect waves-light" ></button> */}
                             </div>
                         </div>                    
                     </form>                

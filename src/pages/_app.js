@@ -1,6 +1,8 @@
 import { Provider } from 'react-redux';
 import { store } from '../state/store';
 
+import { useSelector } from 'react-redux';
+
 import '../../styles/globals.css';
 import '../../public/assets/plugins/bootstrap/css/bootstrap.min.css';
 import '../../public/assets/plugins/datatables.net-bs4/css/dataTables.bootstrap4.css';
@@ -17,15 +19,12 @@ import '../../public/assets/plugins/bootstrap-touchspin/dist/jquery.bootstrap-to
 import '../../public/assets/css/colors/blue.css';
 import '../../public/assets/css/style.css';
 
-import Login from './Login';
-import App from './app';
-const isLoggedIn = false;
+import MainApp from '../components/MainApp';
 
 function MyApp({ Component, pageProps }) {
-  const baseApp = isLoggedIn ? <App Component={Component} pageprops={pageProps} /> : <Login />
   return (
     <Provider store={store}>
-      {baseApp}
+      <MainApp Component={Component} pageProps={pageProps} />
     </Provider>
   )
 }
