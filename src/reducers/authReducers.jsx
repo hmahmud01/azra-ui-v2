@@ -24,7 +24,7 @@ const authReducer = (state = initialState, action) => {
         case "authLogout":
             return {
                 ...state,
-                loginData: action.payload,
+                loginData: [],
                 isLoggedin: false,
             }
         default:

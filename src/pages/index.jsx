@@ -7,8 +7,10 @@ import BreadCrumb from '../components/Misc/BreadCrumb';
 export default function Home() {
   return (
       <>
-      <BreadCrumb title={"Title"} />
-      <p>azra Dash</p>
+        <BreadCrumb title={"Title"} />
+        <div className="card">
+          <p>azra Dash</p>
+        </div>
       </>
       
   )

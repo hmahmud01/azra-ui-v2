@@ -3,7 +3,7 @@ import Script from 'next/script';
 export default function Scripts(){
     return (
         <>
-            <Script src="./assets/plugins/jquery/jquery.min.js" />
+            <Script src="./assets/plugins/jquery/jquery.min.js" onLoad={() => {console.log('jquery has loaded') }}/>
             <Script src="./assets/plugins/popper/popper.min.js" />
             <Script src="./assets/plugins/bootstrap/js/bootstrap.min.js" />
             <Script src="./assets/js/jquery.slimscroll.js" />

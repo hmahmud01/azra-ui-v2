@@ -1,12 +1,11 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useRouter } from 'next/router';
 
-import { authLogin, postLogin } from '../state/authActions';
+import { authLogin } from '../state/authActions';
 
-function Login () {
-    const router = useRouter();
-    const loginData = useSelector(state => state?.isLoggedin);
+function Login ({title}) {
+    const loginData = useSelector(state => state?.auth?.isLoggedin);
     const dispatch = useDispatch();
 
     const [username, setUsername] = useState('');
@@ -27,11 +26,11 @@ function Login () {
 
     const submitLogin = (event) => {
         event.preventDefault();
-        // REDUX FUNCFION HERE 
-        // OTHER FETCH STATE DATA HERE 
-        console.log(data);
         dispatch(authLogin(data));
     }
+
+    const buttonst = loginData ? <input type="submit" value="Submit" className="btn btn-info btn btn-block text-uppercase waves-effect waves-light" id="btn_login"/> : <input type="submit" value={loginData} className="btn btn-info btn btn-block text-uppercase waves-effect waves-light" id="btn_login"/>;
+
 
     return (
         <section id="wrapper" className="login-register login-sidebar">
@@ -42,6 +41,7 @@ function Login () {
                             <span className="light-logo">CNexPay</span>
                         </a> */}
                         <br />
+                        <p>{title}</p>
                         <br />
                         <div className="form-group">
                             <input type="text" className="form-control" id="username" onChange={userVal} required /><span className="bar"></span>
@@ -54,8 +54,9 @@ function Login () {
                         <div className="form-group text-center m-t-20">
                             <div className="col-xs-12">
                                 {/* <button className="btn btn-info btn-lg btn-block text-uppercase waves-effect waves-light" type="button" id="btn_login">Log In</button> */}
-                                <input type="submit" value="Submit" className="btn btn-info btn-lg btn-block text-uppercase waves-effect waves-light" id="btn_login"/>
+                                {/* <input type="submit" value="Submit" className="btn btn-info btn btn-block text-uppercase waves-effect waves-light" id="btn_login"/> */}
                                 {/* <button className="btn btn-info btn-lg btn-block text-uppercase waves-effect waves-light" ></button> */}
+                                { buttonst }
                             </div>
                         </div>                    
                     </form>                

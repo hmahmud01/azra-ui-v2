@@ -21,6 +21,6 @@ export const loggedStatus = () => {
 export const authLogout = (data) => {
     return {
         type: "authLogout",
-        payload: data
+        payload: []
     }
 }

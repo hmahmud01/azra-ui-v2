@@ -1,7 +1,7 @@
 import { Provider } from 'react-redux';
-import { store } from '../state/store';
+import { persistor, store } from '../state/store';
 
-import { useSelector } from 'react-redux';
+import { PersistGate } from 'redux-persist/lib/integration/react';
 
 import '../../styles/globals.css';
 import '../../public/assets/plugins/bootstrap/css/bootstrap.min.css';
@@ -24,7 +24,9 @@ import MainApp from '../components/MainApp';
 function MyApp({ Component, pageProps }) {
   return (
     <Provider store={store}>
-      <MainApp Component={Component} pageProps={pageProps} />
+      <PersistGate loading={null} persistor={persistor}>
+        <MainApp Component={Component} pageProps={pageProps} />
+      </PersistGate>
     </Provider>
   )
 }

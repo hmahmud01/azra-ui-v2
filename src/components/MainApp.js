@@ -1,35 +1,13 @@
-import { useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-
-import { loggedStatus } from '../state/authActions';
-
+import { useSelector } from 'react-redux';
 
 import Login from '../pages/Login';
 import App from '../pages/app';
 
 function MainApp({ Component, pageProps }) {
-  let logged = useSelector(state => state?.isLoggedIn);
-  const dispatch = useDispatch();
+  const logState = useSelector(state => state?.auth.isLoggedin);
 
-  const logged_status = () => {
-    dispatch(loggedStatus);
-    // return loggedST;
-  }
-
-  useEffect(() => {
-    logged_status();
-  },[]) 
-
-  console.log(logged);
-
-  // const [logged, setLogged] = useState(false);
-
-  // let logged = useSelector(state => state?.isLoggedIn);
-  // const logged_status = useSelector(state => state?.isLoggedIn);
-  // setLogged(logged_status);
-
-
-  const baseApp = logged ? <App Component={Component} pageProps={pageProps} /> : <Login />
+  const baseApp = logState ? <App Component={Component} pageProps={pageProps} /> : <Login title={"nes"} />
+ 
   return (
       baseApp
   )
