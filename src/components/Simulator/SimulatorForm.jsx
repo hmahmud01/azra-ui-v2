@@ -1,4 +1,5 @@
-import { use, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 
 function SimulatorForm() {
     const [mobile, setMobile] = useState("");
@@ -12,6 +13,7 @@ function SimulatorForm() {
     const [networklist, setNetworklist] = useState([]);
     const [servicelist, setServicelist] = useState([]);
 
+    const loginData = useSelector(state => state?.auth.loginData);
     // Call api for the country list
     const countryOps = [
         {'id': 1, 'name': "Bangladesh"},
@@ -76,7 +78,8 @@ function SimulatorForm() {
         'amount': amount,
         'country': parseInt(country),
         'network': parseInt(network),
-        'service': parseInt(service)
+        'service': parseInt(service),
+        'user': loginData.username
     }
 
     const clearData = () => {

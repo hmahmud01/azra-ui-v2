@@ -8,6 +8,7 @@ function ApiForm() {
     const [status, setStatus] = useState(0);
     const [credentials, setCredentials] = useState("");
     const [opt, setOpt] = useState([]);
+    const [statusopt, setStatusopt] = useState([]);
 
     // Call api for the country list
     const optd = [
@@ -22,9 +23,11 @@ function ApiForm() {
 
     useEffect(() => {
         setOpt(optd);
+        setStatusopt(stats);
     }, [])
 
     const options = opt.map((value) => <option value={value.id}>{ value.name }</option>)
+    const statoptions = statusopt.map((value) => <option value={value.status}>{ value.status }</option>)
 
     const nameVal = (event) => {
         setName(event.target.value);
@@ -47,14 +50,15 @@ function ApiForm() {
     }
 
     const statusVal = (event) => {
-        setStatus(event.currentTarget.value);
-        console.log(event.currentTarget.value);
+        setStatus(event.target.value);
+        console.log(event.target.value);
     }
 
     let data = {
         'name': name,
         'code': code,
         "info": info,
+        'status': status,
         "credentials": credentials,
         'type': type
     }
@@ -104,25 +108,11 @@ function ApiForm() {
                         <input type="text" id="info" className="form-control" onChange={infoVal}/>
                     </div>
 
-                    <div class="form-group">
-                        <label for="">Status</label>
-                        {statusOptions}
-                        {/* <div class="form-check">
-                            <input class="form-check-input" 
-                                    type="radio" name="status" 
-                                    value="active"
-                                    checked={status}
-                                    onChange={statusVal} />
-                            <label class="form-check-label" for="exampleRadios1">
-                                Default radio
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2" onChange={statusVal} />
-                            <label class="form-check-label" for="exampleRadios2">
-                                Second default radio
-                            </label>
-                        </div> */}
+                    <div className="form-group">
+                        <label>Status</label>
+                        <select class="custom-select" onChange={statusVal}>
+                            {statoptions}
+                        </select>
                     </div>
 
                     <div className="form-group">

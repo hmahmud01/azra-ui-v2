@@ -6,8 +6,8 @@ function ApiData() {
 
     // call api to get these datas
     const sdata = [
-        {'id': 1, 'api': "ZOLO", 'code': "ZLO"},
-        {'id': 2, 'api': "Etisalat", 'code': "ETS"},
+        {'id': 1, 'api': "ZOLO", 'code': "ZLO", "status": true},
+        {'id': 2, 'api': "Etisalat", 'code': "ETS", "status": false},
     ]
 
     useEffect(() => {
@@ -15,7 +15,7 @@ function ApiData() {
     }, []);
 
     const rows = data.map((row) =>
-        <DataRow id={row.id} api={row.api} code={row.code} />
+        <DataRow id={row.id} api={row.api} code={row.code} status={row.status} />
     );
 
     return(

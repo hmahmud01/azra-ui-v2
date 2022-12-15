@@ -1,4 +1,36 @@
-function DataRow({ id, api, code }) {
+import { useState, useEffect } from "react";
+
+function DataRow({ id, api, code, status }) {
+    const [statusClass, setStatusClass] = useState("");
+    const [statusText, setStatusText] = useState("");
+    const [statusVal, setStatusVal] = useState(status);
+
+    useEffect(() => {
+        // console.log(statusVal);
+        // setStatusVal(status);
+        // console.log(statusVal);
+        const btnClass = statusVal ? "btn btn-sm btn-primary" : "btn btn-sm btn-danger";
+        const btnText = statusVal ? "Active" : "Inactive";
+        setStatusClass(btnClass);
+        setStatusText(btnText);
+    }, []);
+
+    const statusCheck = () => {
+        console.log(statusVal);
+        if (statusVal == true) {
+            console.log("de activating");
+            setStatusVal(false);
+            setStatusClass("btn btn-sm btn-primary");
+            setStatusText("Active");
+        }else{
+            console.log("activating");
+            setStatusVal(true);
+            setStatusClass("btn btn-sm btn-danger");
+            setStatusText("Inactive");
+        }
+    }
+
+
     return(
         <tr>
             <td>{id}</td>
@@ -21,6 +53,9 @@ function DataRow({ id, api, code }) {
                             aria-hidden="true"></span>
                     </button>
                 </div>
+            </td>
+            <td>
+                <button className={statusClass} onClick={statusCheck}>{statusText}</button>
             </td>
         </tr>
     )
