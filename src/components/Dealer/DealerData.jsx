@@ -11,7 +11,12 @@ function DealerData() {
     ]
 
     useEffect(() => {
-        setData(sdata)
+        fetch('http://localhost:3000/dealers')
+            .then((res) => res.json())
+            .then((data) => {
+                console.log(data.message);
+                setData(data.message);
+            })
     }, []);
 
     const rows = data.map((row) =>

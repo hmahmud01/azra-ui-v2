@@ -12,7 +12,12 @@ function MnoData() {
     ]
 
     useEffect(() => {
-        setData(sdata)
+        fetch('http://localhost:3000/networks')
+            .then((res) => res.json())
+            .then((data) => {
+                console.log(data.message);
+                setData(data.message);
+            })
     }, []);
 
     const rows = data.map((row) =>
