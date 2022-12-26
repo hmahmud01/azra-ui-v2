@@ -13,10 +13,16 @@ function ServiceForm() {
     ] 
 
     useEffect(() => {
-        setOpt(optd);
+        fetch('http://localhost:3000/network/list')
+            .then((res) => res.json())
+            .then((data) => {
+                console.log(data.message);
+                setOpt(data.message);
+            })
+        // setOpt(optd);
     }, [])
 
-    const options = opt.map((value) => <option value={value.id}>{ value.mno }</option>)
+    const options = opt.map((value) => <option value={value.id}>{ value.name }</option>)
 
     const serviceVal = (event) => {
         setService(event.target.value);

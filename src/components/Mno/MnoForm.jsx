@@ -12,7 +12,13 @@ function MnoForm() {
     ] 
 
     useEffect(() => {
-        setOpt(optd);
+        fetch('http://localhost:3000/country/list')
+            .then((res) => res.json())
+            .then((data) => {
+                console.log(data.message);
+                setOpt(data.message);
+            })
+        // setOpt(optd);
     }, [])
 
     const options = opt.map((value) => <option value={value.id}>{ value.name }</option>)

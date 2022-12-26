@@ -31,7 +31,7 @@ function CountryForm() {
 
     const saveData = () => {
         console.log("data Saving : ", data);
-        fetch('http://localhost:3000/api', {
+        fetch('http://localhost:3000/country', {
             method: 'POST', // or 'PUT'
             headers: {
                 'Content-Type': 'application/json',
