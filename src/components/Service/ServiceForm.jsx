@@ -73,6 +73,7 @@ function ServiceForm() {
                     <div className="form-group">
                         <label>Select Mobile Network</label>
                         <select class="custom-select" onChange={mnoVal}>
+                            <option value="0">Select Network</option>
                             {options}
                         </select>
                     </div>

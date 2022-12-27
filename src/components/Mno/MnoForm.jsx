@@ -72,6 +72,7 @@ function MnoForm() {
                     <div className="form-group">
                         <label>Select Country</label>
                         <select class="custom-select" onChange={countryVal}>
+                            <option value="0">Select Country</option>
                             {options}
                         </select>
                     </div>

@@ -21,7 +21,7 @@ function MnoData() {
     }, []);
 
     const rows = data.map((row) =>
-        <DataRow id={row.id} mno={row.mno} ctry={row.ctry} />
+        <DataRow id={row.id} mno={row.name} ctry={row.nation.name} />
     );
 
     return(

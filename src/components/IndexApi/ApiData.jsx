@@ -20,7 +20,7 @@ function ApiData() {
     }, []);
 
     const rows = data.map((row) =>
-        <DataRow id={row.id} api={row.api} code={row.code} status={row.status} />
+        <DataRow id={row.id} api={row.name} code={row.code} status={row.status} />
     );
 
     return(

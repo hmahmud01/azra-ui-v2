@@ -125,6 +125,7 @@ function ApiForm() {
                     <div className="form-group">
                         <label>Status</label>
                         <select class="custom-select" onChange={statusVal}>
+                            <option value="null">Select Status</option>
                             {statoptions}
                         </select>
                     </div>

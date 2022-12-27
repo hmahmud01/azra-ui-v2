@@ -20,7 +20,7 @@ function ServiceData() {
     }, []);
 
     const rows = data.map((row) =>
-        <DataRow id={row.id} service={row.service} mno={row.mno} />
+        <DataRow id={row.id} service={row.name} mno={row.mobile.name} />
     );
 
     return(

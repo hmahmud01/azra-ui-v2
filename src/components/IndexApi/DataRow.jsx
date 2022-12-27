@@ -6,9 +6,6 @@ function DataRow({ id, api, code, status }) {
     const [statusVal, setStatusVal] = useState(status);
 
     useEffect(() => {
-        // console.log(statusVal);
-        // setStatusVal(status);
-        // console.log(statusVal);
         const btnClass = statusVal ? "btn btn-sm btn-primary" : "btn btn-sm btn-danger";
         const btnText = statusVal ? "Active" : "Inactive";
         setStatusClass(btnClass);
