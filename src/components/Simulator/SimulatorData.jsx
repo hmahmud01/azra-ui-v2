@@ -11,11 +11,16 @@ function SimulatorData() {
     ]
 
     useEffect(() => {
-        setData(sdata)
+        fetch('http://localhost:3000/alltrx')
+            .then((res) => res.json())
+            .then((data) => {
+                console.log(data.message);
+                setData(data.message);
+            })
     }, []);
 
     const rows = data.map((row) =>
-        <DataRow id={row.id} number={row.number} amount={row.amount} by={row.by} api={row.api} />
+        <DataRow id={row.id} number={row.phone} amount={row.amount} by={row.agent} api={row.api.code} />
     );
 
     return(

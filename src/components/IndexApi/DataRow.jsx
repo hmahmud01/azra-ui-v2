@@ -13,18 +13,34 @@ function DataRow({ id, api, code, status }) {
     }, []);
 
     const statusCheck = () => {
+        event.preventDefault();
+        let id = parseInt(event.target.getAttribute("data-id"))
+        console.log(id);
         console.log(statusVal);
-        if (statusVal == true) {
-            console.log("de activating");
-            setStatusVal(false);
-            setStatusClass("btn btn-sm btn-primary");
-            setStatusText("Active");
+        if(statusVal){
+            let url = `http://localhost:3000/api/deactivate/${id}`;
+            console.log("access url ", url);
+            fetch(url)
+                .then((res) => res.json())
+                .then((data) => console.log(data.message));
         }else{
-            console.log("activating");
-            setStatusVal(true);
-            setStatusClass("btn btn-sm btn-danger");
-            setStatusText("Inactive");
+            let url = `http://localhost:3000/api/activate/${id}`;
+            console.log("access url ", url);
+            fetch(url)
+                .then((res) => res.json())
+                .then((data) => console.log(data.message));
         }
+        // if (statusVal == true) {
+        //     console.log("de activating");
+        //     setStatusVal(false);
+        //     setStatusClass("btn btn-sm btn-primary");
+        //     setStatusText("Active");
+        // }else{
+        //     console.log("activating");
+        //     setStatusVal(true);
+        //     setStatusClass("btn btn-sm btn-danger");
+        //     setStatusText("Inactive");
+        // }
     }
 
 
@@ -52,7 +68,7 @@ function DataRow({ id, api, code, status }) {
                 </div>
             </td>
             <td>
-                <button className={statusClass} onClick={statusCheck}>{statusText}</button>
+                <button className={statusClass} data-id={id} onClick={statusCheck}>{statusText}</button>
             </td>
         </tr>
     )

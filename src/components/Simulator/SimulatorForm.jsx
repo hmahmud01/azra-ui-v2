@@ -35,24 +35,21 @@ function SimulatorForm() {
         fetch('http://localhost:3000/country/list')
             .then((res) => res.json())
             .then((data) => {
-                console.log(data.message);
+                console.log("country : ", data.message);
                 setCountries(data.message);
             })
         fetch('http://localhost:3000/network/list')
             .then((res) => res.json())
             .then((data) => {
-                console.log(data.message);
+                console.log("network : ", data.message);
                 setNetworks(data.message);
             })
         fetch('http://localhost:3000/service/list')
             .then((res) => res.json())
             .then((data) => {
-                console.log(data.message);
+                console.log("service : ", data.message);
                 setServices(data.message);
             })
-        // setCountries(countryOps);
-        // setNetworks(networkOps);
-        // setServices(serviceOps);
     }, [])
 
     const ctry = countries.map((value) => <option value={value.id}>{value.name}</option>)
@@ -72,7 +69,7 @@ function SimulatorForm() {
         setCountry(event.target.value);
         let ctry = event.target.value;
         const filterdNetwork = networks.filter((data) => {
-            return data ? data.country == parseInt(ctry) : {}
+            return data ? data.nationId == parseInt(ctry) : {}
         });
         console.log(filterdNetwork);
 
@@ -80,12 +77,13 @@ function SimulatorForm() {
     }
 
     const networkVal = (event) => {
+        console.log(event.target.value);
         setNetwork(event.target.value);
         let net = event.target.value;
         const filteredService = services.filter((data) => {
             return data ? data.network === parseInt(net) : {}
         });
-
+        console.log(filteredService);
         setServicelist(filteredService);
     }
 
@@ -113,7 +111,7 @@ function SimulatorForm() {
     const saveData = () => {
         console.log(data);
         fetch('http://localhost:3000/submitdata', {
-            method: 'POST', // or 'PUT'
+            method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },

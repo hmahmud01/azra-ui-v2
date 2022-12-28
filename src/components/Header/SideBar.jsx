@@ -42,11 +42,11 @@ export default function SideBar() {
                                     <li>
                                         <Link href="/service">Service</Link>
                                     </li>        
-                                    <li>
+                                    {/* <li>
                                         <Link href="/aggregator">Aggregator</Link>
-                                    </li>
+                                    </li> */}
                                     <li>
-                                        <Link href="/mno">MNO</Link>
+                                        <Link href="/mno">Mobile Network</Link>
                                     </li>
                                 </ul>
                             </li>
