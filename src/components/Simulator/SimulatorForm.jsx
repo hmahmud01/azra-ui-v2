@@ -14,22 +14,6 @@ function SimulatorForm() {
     const [servicelist, setServicelist] = useState([]);
 
     const loginData = useSelector(state => state?.auth.loginData);
-    // Call api for the country list
-    const countryOps = [
-        { 'id': 1, 'name': "Bangladesh" },
-        { 'id': 2, 'name': "India" }
-    ]
-
-    const networkOps = [
-        { 'id': 1, 'name': "Gp", 'country': 1 },
-        { 'id': 2, 'name': "Airtel", 'country': 2 },
-        { 'id': 3, 'name': "Banglalink", 'country': 1 }
-    ]
-
-    const serviceOps = [
-        { 'id': 1, 'name': "Dataload", 'network': 1 },
-        { 'id': 2, 'name': "TopUp", 'network': 2 }
-    ]
 
     useEffect(() => {
         fetch('http://localhost:3000/country/list')
@@ -81,7 +65,7 @@ function SimulatorForm() {
         setNetwork(event.target.value);
         let net = event.target.value;
         const filteredService = services.filter((data) => {
-            return data ? data.network === parseInt(net) : {}
+            return data ? data.mobileId === parseInt(net) : {}
         });
         console.log(filteredService);
         setServicelist(filteredService);
@@ -110,13 +94,14 @@ function SimulatorForm() {
 
     const saveData = () => {
         console.log(data);
-        fetch('http://localhost:3000/submitdata', {
+        if (mobile.length == 11){
+            fetch('http://localhost:3000/submitdata', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(data),
-        })
+            })
             .then((response) => response.json())
             .then((data) => {
                 console.log('Success:', data);
@@ -124,7 +109,11 @@ function SimulatorForm() {
             .catch((error) => {
                 console.error('Error:', error);
             });
-        clearData();
+            clearData();
+        }else{
+            alert(`you have entered a number with the lenth of ${mobile.length}`);
+        }
+        
     }
 
     return (
@@ -163,14 +152,14 @@ function SimulatorForm() {
                 <div className="col-md-6">
                     <div className="form-group">
                         <label for="">Mobile Number</label>
-                        <input type="text" id="mobile" className="form-control" onChange={mobileVal} />
+                        <input type="number" id="mobile" className="form-control" onChange={mobileVal} />
                     </div>
                 </div>
 
                 <div className="col-md-6">
                     <div className="form-group">
                         <label for="">Amount</label>
-                        <input type="text" id="amount" className="form-control" onChange={amountVal} />
+                        <input type="number" step="0.01" id="amount" className="form-control" onChange={amountVal} />
                     </div>
                 </div>
 

@@ -4,12 +4,6 @@ import DataRow from "./DataRow";
 function ServiceData() {
     const [data, setData] = useState([]);
 
-    // call api to get these datas
-    const sdata = [
-        {'id': 1, 'service': "TopUp", 'mno': "GP",},
-        {'id': 2, 'service': "DataLoad", 'mno': "Banglalink"}
-    ]
-
     useEffect(() => {
         fetch('http://localhost:3000/services')
             .then((res) => res.json())

@@ -4,12 +4,6 @@ import DataRow from "./DataRow";
 function ApiData() {
     const [data, setData] = useState([]);
 
-    // call api to get these datas
-    const sdata = [
-        {'id': 1, 'api': "ZOLO", 'code': "ZLO", "status": true},
-        {'id': 2, 'api': "Etisalat", 'code': "ETS", "status": false},
-    ]
-
     useEffect(() => {
         fetch('http://localhost:3000/apis')
             .then((res) => res.json())
