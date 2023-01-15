@@ -12,8 +12,8 @@ function ApiForm() {
 
     // Call api for the country list
     const optd = [
-        {'id': 1, 'name': "Urlencoded"},
-        {'id': 2, 'name': "JSON"}
+        {'id': 1, 'name': "sync"},
+        {'id': 2, 'name': "async"}
     ]
 
     const stats = [
@@ -118,7 +118,7 @@ function ApiForm() {
                     </div>
 
                     <div class="form-group">
-                        <label for="">Info</label>
+                        <label for="">Api URL</label>
                         <input type="text" id="info" className="form-control" onChange={infoVal}/>
                     </div>
 
@@ -131,15 +131,11 @@ function ApiForm() {
                     </div>
 
                     <div className="form-group">
-                        <label>Request Type</label>
+                        <label>Api Type</label>
                         <select class="custom-select" onChange={typeVal}>
+                            <option value="null">Select Type</option>
                             {options}
                         </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="">Credentials</label>
-                        <textarea class="form-control" id="credentials" rows="3" onChange={credVal}></textarea>
                     </div>
 
                     <div className="form-group">
