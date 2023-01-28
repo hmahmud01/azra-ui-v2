@@ -1,6 +1,7 @@
 import BreadCrumb from "../components/Misc/BreadCrumb";
 import SimulatorData from "../components/Simulator/SimulatorData";
 import SimulatorForm from "../components/Simulator/SimulatorForm";
+import AgentData from "../components/Simulator/AgentData";
 
 function Simulator() {
     return (
@@ -25,9 +26,13 @@ function Simulator() {
                                     <div className="clearfix">&nbsp;</div>
                                     <p>Table Content</p>
                                     <SimulatorData />
+                                    <br/>
+                                    <p>Agent Data</p>
+                                    <AgentData />
                                 </div>
                                 <div className="tab-pane" id="addnew" role="tabpanel">
                                     <SimulatorForm />
+                                    
                                 </div>
                             </div>
                         </div>

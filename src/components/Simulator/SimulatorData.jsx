@@ -20,7 +20,7 @@ function SimulatorData() {
     }, []);
 
     const rows = data.map((row) =>
-        <DataRow id={row.id} number={row.phone} amount={row.amount} by={row.agent} api={row.api.code} />
+        <DataRow id={row.id} number={row.trx.phone} amount={row.trx.amount} by={row.trx.agent} api={row.api.code} />
     );
 
     return(

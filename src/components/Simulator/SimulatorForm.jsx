@@ -105,9 +105,11 @@ function SimulatorForm() {
             .then((response) => response.json())
             .then((data) => {
                 console.log('Success:', data);
+                alert(data.message.msg);
             })
             .catch((error) => {
                 console.error('Error:', error);
+                alert(error.message.msg);
             });
             clearData();
         }else{
@@ -167,7 +169,7 @@ function SimulatorForm() {
                     <div className="form-group">
                         <button type="button"
                             className="btn btn-info text-uppercase waves-effect waves-light"
-                            id="btn_save" onClick={saveData}> Save</button>
+                            id="btn_save" onClick={saveData}> Recharge</button>
                         <button type="button"
                             className="btn text-uppercase waves-effect waves-light btn-secondary"
                             id="btn_clear" onClick={clearData}>Clear</button>
