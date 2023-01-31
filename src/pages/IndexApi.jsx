@@ -1,6 +1,7 @@
 import BreadCrumb from "../components/Misc/BreadCrumb";
 import ApiData from "../components/IndexApi/ApiData";
 import ApiForm from "../components/IndexApi/ApiForm";
+import AvailableCountry from '../components/IndexApi/AvailableCountry';
 
 function IndexApi() {
     return(
@@ -18,6 +19,9 @@ function IndexApi() {
                                 <li className="nav-item"> <a className="nav-link" data-toggle="tab" href="#addnew"
                                         role="tab"><span className="hidden-sm-up"><i className="ti-plus"></i></span> <span
                                         className="hidden-xs-down">Add New</span></a> </li>
+                                <li className="nav-item"> <a className="nav-link" data-toggle="tab" href="#countrylist"
+                                        role="tab"><span className="hidden-sm-up"><i className="ti-plus"></i></span> <span
+                                        className="hidden-xs-down">Available Country</span></a> </li>
                             </ul>
                             <div className="tab-content">
                                 <div className="clearfix">&nbsp;</div>
@@ -28,6 +32,9 @@ function IndexApi() {
                                 </div>
                                 <div className="tab-pane" id="addnew" role="tabpanel">
                                     <ApiForm />
+                                </div>
+                                <div className="tab-pane" id="countrylist" role="tabpanel">
+                                    <AvailableCountry />
                                 </div>
                             </div>
                         </div>
