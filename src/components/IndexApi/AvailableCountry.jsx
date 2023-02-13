@@ -9,17 +9,69 @@ const Checkbox = ({ obj, onChange }) => {
           name={obj.name}
           value={obj.checked}
           onChange={() => onChange({ ...obj, checked: !obj.checked })}
+          checked={obj.checked}
         />
         {obj.name}
       </>
     );
   };
 
+const checkBoxUpdate = ({ obj, onChange, api }) => {
+    const chk = true ? obj.api == api : false
+    return(
+        <>
+        <input
+          type="checkbox"
+          id={`custom-checkbox-${obj.index}`}
+          name={obj.name}
+          value={obj.checked}
+          onChange={() => onChange({ ...obj, checked: !obj.checked })}
+          checked={chk}
+        />
+        {obj.name}
+        </>
+    )
+}
+
+const Checkinput = ({obj ,api, onChange}) => {
+    const checkedVal = checkStatus(obj.apiList, api);
+    return(
+        <p><input 
+            type="checkbox" 
+            value={obj.name} 
+            onChange={()=> onChange()} 
+            checked={checkedVal}/> 
+            {obj.name}
+        </p>
+    )
+}
+
+const checkStatus = (list, api) => {
+    let status = false
+    console.log(list);
+    console.log(api);
+    for (let i = 0; i<list.length; i++){
+        if(api == list[i]){
+            status = true
+        }
+    }
+    return status;
+}
+
+  
+
 function AvailableCountry() {
     const [country, setCountry] = useState(0);
     const [api, setApi] = useState(0);
+    const [countries, setCountries] = useState([]);
     const [opt, setOpt] = useState([]);
     const [data, setData] = useState([]);
+
+    let api_ctry = [
+        {id: 1, api: 1, name: "Bangladesh", checked: false},
+        {id: 2, api: 2, name: "India", checked: true},
+        {id: 3, api: 3, name: "Pakistan", checked: false}
+    ]
 
     useEffect(() => {
 
@@ -34,7 +86,7 @@ function AvailableCountry() {
             .then((res) => res.json())
             .then((data) => {
                 console.log(data.message);
-                setData(data.message);
+                setCountries(data.message);
             })
         // setOpt(optd);
     }, [])
@@ -46,8 +98,13 @@ function AvailableCountry() {
     }
 
     const apiVal = (event) => {
-        console.log(event.target.value);
-        setApi(event.target.value);
+        console.log(parseInt(event.target.value));
+        setApi(parseInt(event.target.value));
+        const filterdCountry = countries.filter((data) => {
+            return data ? data.api == parseInt(event.target.value) : {}
+        });
+
+        setData(filterdCountry);
     }
 
     const saveData = () => {
@@ -89,7 +146,7 @@ function AvailableCountry() {
                     </div>
 
                     <div className="checkboxarea">
-                    {data.map((obj, index) => (
+                    {/* {data.map((obj, index) => (
                         <li key={index}>
                         <Checkbox
                             obj={obj}
@@ -98,6 +155,27 @@ function AvailableCountry() {
                             }}
                         />
                         </li>
+                    ))} */}
+
+                    {/* {countries.map((obj, index) => (
+                        <li key={index}>
+                        <Checkbox
+                            obj={obj}
+                            onChange={(item) => {
+                                console.log(item);
+                                setData(data.map((d) => (d.id === item.id ? item : d)));
+                            }}
+                        />
+                        </li>
+                    ))} */}
+
+                    {countries.map((obj, index)=> (
+                        <Checkinput 
+                            obj={obj}
+                            api={api}
+                            onChange={(item) => {
+                                setCountries(countries.map((d) => (d.id === item.id ? item : d)));
+                            }}/>
                     ))}
                     </div>
 
